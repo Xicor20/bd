@@ -41,3 +41,16 @@ yarn-site.xml
  <value>org.apache.hadoop.mapred.shuffleHandler</value>
  </property>
  </configuration>
+
+
+cmd:
+hdfs namenode -format
+cd \
+cd Hadoop
+cd sbin
+start-dfs.cmd
+jps
+start-yarn.cmd
+jps
+
+9870,8088
