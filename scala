@@ -52,7 +52,7 @@ val a = spark.read.option("header", "true").csv("C:\\Program Files\\spark-3.5.2-
 a.show()
 a.printSchema()
 
-12. Performing operations on custom data.
+12. Performing operations on custom data.:
 val mydata = spark.read.format("csv").option("inferschema", "true").option("header", "true").load("C:\\Program Files\\spark-3.5.2-bin-hadoop3-scala2.13\\examples\\src\\main\\resources\\banking.csv")
 mydata.show()
 mydata.show(50)
