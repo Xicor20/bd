@@ -1,0 +1,61 @@
+import pyspark
+import pandas as pd
+
+
+from google.colab import files
+
+
+uploaded = files.upload()
+
+
+from pyspark.sql import SparkSession
+spark=SparkSession.builder.appName('Practise').getOrCreate()
+
+df_pyspark=spark.read.csv('mydata.csv',header=True,inferSchema=True)
+df_pyspark.show()
+
+type(df_pyspark)
+
+df_pyspark.printSchema()
+
+df_pyspark.columns
+
+df_pyspark.head(3)
+
+df_pyspark.select(['Name','Experience']).show()
+df_pyspark['Name']  
+
+df_pyspark.dtypes
+
+df_pyspark.describe().show()
+
+df_pyspark=df_pyspark.withColumn('Experience After 2 year',df_pyspark['Experience']+2)
+
+df_pyspark.show()
+
+df_pyspark=df_pyspark.drop('Experience After 2 year').show
+
+df_pyspark.withColumnnRenamed('Name','New Name').show()
+
+df_pyspark.na.drop().show()
+
+df_pyspark.na.drop(how="all").show()
+
+df_pyspark=df_pysparkwithColumn('Name','New Name').show()
+
+df_pyspark=df_pyspark.na.drop(how="all")
+df_pyspark=df_pyspark.na.drop(how="any")
+df_pyspark=df_pyspark.na.drop(how="any",thresh=2)
+df_pyspark=df_pyspark.na.drop(how="any",subset=['Age'])
+
+
+
+df_pyspark.na.fill('Missing Values',['Experience','age'])
+
+
+from pyspark.ml.feature import Imputer
+
+imputer=Imputer(inputCol='age',outputCol="{}_imputed".format(c) for c in [Age]).setStratergy('mean')
+
+imputer=imputer.fit(df_pyspark)
+imputer.transform(df_pyspark).show()
